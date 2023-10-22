@@ -1,6 +1,7 @@
 package com.sgriendt.pit;
 
 
+import com.sgriendt.pit.state.PitState;
 import com.sgriendt.player.Player;
 
 public class BigPit extends Pit {

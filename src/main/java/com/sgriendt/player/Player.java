@@ -2,6 +2,9 @@ package com.sgriendt.player;
 
 import com.sgriendt.pit.Pit;
 
+/**
+ * Player will be the entity that will keep track of how many stones it can play and if its allowed an extra turn.
+ */
 public class Player {
 
     private String name;

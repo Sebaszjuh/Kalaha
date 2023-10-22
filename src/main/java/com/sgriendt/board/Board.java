@@ -5,6 +5,9 @@ import com.sgriendt.player.Player;
 
 import java.util.LinkedList;
 
+/**
+ * Board is a data entity that holds all variables to play the game, the logic to use the board will be in the board controller
+ */
 public class Board {
 
     private final LinkedList<Pit> p2Board;

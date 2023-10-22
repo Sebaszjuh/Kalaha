@@ -1,5 +1,6 @@
-package com.sgriendt.pit;
+package com.sgriendt.pit.state;
 
+import com.sgriendt.pit.Pit;
 import com.sgriendt.player.Player;
 
 public interface PitState {

@@ -1,6 +1,7 @@
 package com.sgriendt.pit;
 
 
+import com.sgriendt.pit.state.PitState;
 import com.sgriendt.player.Player;
 
 public abstract class Pit {
@@ -22,6 +23,35 @@ public abstract class Pit {
     public abstract void handleLastSow(Player currentPlayer);
 
     public abstract boolean isSmallPitEmpty();
+
+    public void processMove(Player currentPlayer) {
+        if (currentPlayer.getStonesInHand() <= 0) {
+            throw new IllegalStateException("Cant process move, when hand is empty");
+        }
+        if (!canSow(currentPlayer)) {
+            return;
+        }
+        pitState.handleProcess(this, currentPlayer);
+    }
+
+    public void handleSimpleSow(Player currentPlayer) {
+        sow();
+        currentPlayer.decrementStonesInHand();
+    }
+
+    public int takeStones() {
+        int nrOfStones = 0;
+        if (canTake()) {
+            nrOfStones = stones;
+            stones = 0;
+            getPitState().nextState(this);
+        }
+        return nrOfStones;
+    }
+
+    public void sow(){
+        stones++;
+    }
 
 
     public int getStones() {
