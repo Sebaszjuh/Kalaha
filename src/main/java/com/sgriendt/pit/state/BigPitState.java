@@ -9,7 +9,7 @@ public class BigPitState implements PitState {
     @Override
     public void handleProcess(Pit pit, Player player) {
         final int stones = player.getStonesInHand();
-        if (stones <= 1) {
+        if (stones == 1) {
             pit.handleLastSow(player);
             return;
         }

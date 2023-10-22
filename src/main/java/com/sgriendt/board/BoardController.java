@@ -56,7 +56,7 @@ public record BoardController(Board board) {
         player.setStonesInHand(pit.takeStones());
         Pit temp = pit;
         while (player.getStonesInHand() > 0) {
-            temp = temp.getNext();
+            temp = temp.getNextPit();
             temp.processMove(player);
         }
         printBoard();
@@ -75,7 +75,7 @@ public record BoardController(Board board) {
 
     public Pit pickPit(int randomNumber) {
         Pit pit = board.getActivePlayerBoard().get(randomNumber);
-        if (pit.getStones() <= 0) {
+        if (pit.getStonesInPit() <= 0) {
             pickPit(pickRandomPitNumber());
         }
         return pit;

@@ -2,6 +2,7 @@ package com.sgriendt.pit;
 
 
 import com.sgriendt.exception.KalahaIllegalMoveException;
+import com.sgriendt.pit.state.FilledSmallPit;
 import com.sgriendt.pit.state.PitState;
 import com.sgriendt.player.Player;
 
@@ -10,7 +11,7 @@ public class SmallPit extends Pit {
     private static final int NUMBER_OF_STONES = 6;
 
     public SmallPit(Player player) {
-        this(NUMBER_OF_STONES, player, null);
+        this(NUMBER_OF_STONES, player, new FilledSmallPit());
     }
 
     SmallPit(int stones, Player player, PitState state) {
@@ -19,7 +20,7 @@ public class SmallPit extends Pit {
 
     @Override
     public void handleLastSow(Player currentPlayer) {
-        if (getStones() > 0) {
+        if (getStonesInPit() > 0) {
             throw new KalahaIllegalMoveException("Invalid move, pit must have 0 stones to make this move");
         }
         final Pit opponentPit = getOppositePit();
@@ -45,6 +46,6 @@ public class SmallPit extends Pit {
 
     @Override
     public boolean isSmallPitEmpty() {
-        return super.getStones() <= 0;
+        return super.getStonesInPit() <= 0;
     }
 }

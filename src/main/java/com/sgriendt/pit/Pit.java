@@ -6,15 +6,15 @@ import com.sgriendt.player.Player;
 
 public abstract class Pit {
 
-    private int stones;
+    private int stonesInPit;
     private PitState pitState;
-    private Player player;
-    private Pit next;
+    private Player ownerOfPit;
+    private Pit nextPit;
     private Pit oppositePit;
 
-    Pit (int stones, Player player, PitState pitState) {
-        this.stones = stones;
-        this.player = player;
+    Pit (int stones, Player ownerOfPit, PitState pitState) {
+        this.stonesInPit = stones;
+        this.ownerOfPit = ownerOfPit;
         this.pitState = pitState;
     }
 
@@ -42,39 +42,40 @@ public abstract class Pit {
     public int takeStones() {
         int nrOfStones = 0;
         if (canTake()) {
-            nrOfStones = stones;
-            stones = 0;
+            nrOfStones = stonesInPit;
+            stonesInPit = 0;
             getPitState().nextState(this);
         }
         return nrOfStones;
     }
 
     public void sow(){
-        stones++;
+        stonesInPit++;
     }
 
 
-    public int getStones() {
-        return stones;
+    public int getStonesInPit() {
+        return stonesInPit;
     }
 
-    public void setStones(int stones) {
-        this.stones = stones;
+    public void setStonesInPit(int stonesInPit) {
+        this.stonesInPit = stonesInPit;
     }
 
     public void addStonesToPit(int addedStones){
+        setStonesInPit(getStonesInPit() + addedStones);
     }
 
     public Pit getOppositePit() {
         return oppositePit;
     }
 
-    public Pit getNext() {
-        return next;
+    public Pit getNextPit() {
+        return nextPit;
     }
 
-    public void setNext(Pit next) {
-        this.next = next;
+    public void setNextPit(Pit nextPit) {
+        this.nextPit = nextPit;
     }
 
     public void setOppositePit(Pit oppositePit) {
@@ -82,12 +83,12 @@ public abstract class Pit {
     }
 
 
-    public Player getPlayer() {
-        return player;
+    public Player getOwnerOfPit() {
+        return ownerOfPit;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setOwnerOfPit(Player ownerOfPit) {
+        this.ownerOfPit = ownerOfPit;
     }
 
     public void setPitState(PitState pitState) {
