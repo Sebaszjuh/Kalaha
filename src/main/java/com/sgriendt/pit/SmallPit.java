@@ -8,10 +8,10 @@ import com.sgriendt.player.Player;
 
 public class SmallPit extends Pit {
 
-    private static final int NUMBER_OF_STONES = 6;
+    private static final int DEFAULT_NUMBER_OF_PITS = 6;
 
     public SmallPit(Player player) {
-        this(NUMBER_OF_STONES, player, new FilledSmallPit());
+        this(DEFAULT_NUMBER_OF_PITS, player, new FilledSmallPit());
     }
 
     SmallPit(int stones, Player player, PitState state) {
