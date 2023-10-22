@@ -9,13 +9,16 @@ public class EmptySmallPit implements PitState {
     @Override
     public void handleProcess(Pit pit, Player player) {
         final int stones = player.getStonesInHand();
-        if (stones == 1 && pit.getStonesInPit() == 0) {
+        if (isAbleToCaptureStones(stones, pit, player)) {
             pit.handleLastSow(player);
-            nextState(pit);
             return;
         }
         pit.handleSimpleSow(player);
         nextState(pit);
+    }
+
+    private boolean isAbleToCaptureStones(int stones, Pit pit, Player player){
+        return stones == 1 && pit.getStonesInPit() == 0 && pit.getOwnerOfPit().equals(player);
     }
 
     @Override

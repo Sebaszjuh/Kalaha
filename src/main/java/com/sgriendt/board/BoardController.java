@@ -40,6 +40,7 @@ public record BoardController(Board board) {
 
     public void printBoard() {
         String TEMPLATE = """
+        ------------------------------------------------
                        Player Two
              | %02d | %02d | %02d | %02d | %02d | %02d |
         (%02d)                                 (%02d)

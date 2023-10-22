@@ -47,9 +47,13 @@ public abstract class PlayType {
     }
 
     protected Pit getRandomGeneratedValidPit(BoardController boardController) {
-        Pit pit = boardController.board().getActivePlayerBoard().get(pickRandomPitNumber());
+        int randomNumber = pickRandomPitNumber();
+        System.out.printf("%s rolls %s\n", boardController.board().getCurrentPlayer().getName(), randomNumber);
+        Pit pit = boardController.board().getActivePlayerBoard().get(randomNumber);
         while (pit.getStonesInPit() == 0) {
-            pit = boardController.board().getActivePlayerBoard().get(pickRandomPitNumber());
+            randomNumber = pickRandomPitNumber();
+            System.out.printf("%s has to roll again he rolls rolls %s\n", boardController.board().getCurrentPlayer().getName(), randomNumber);
+            pit = boardController.board().getActivePlayerBoard().get(randomNumber);
         }
         return pit;
     }
