@@ -17,4 +17,13 @@ public class GameTest {
 
         assertNotEquals(BoardStatus.ACTIVE, game.getBoardController().board().getGameStatus());
     }
+
+    @Test
+    void callCleanUpWhileGameIsActive() {
+        System.setIn(new ByteArrayInputStream("2".getBytes()));
+        Game game = new Game();
+        game.start();
+
+        assertNotEquals(BoardStatus.ACTIVE, game.getBoardController().board().getGameStatus());
+    }
 }

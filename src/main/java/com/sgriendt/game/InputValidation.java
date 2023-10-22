@@ -7,10 +7,10 @@ public class InputValidation {
             return false;
         }
         final String trimmedString = s.trim();
-        try{
+        try {
             Integer.parseInt(trimmedString);
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }

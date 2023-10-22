@@ -13,7 +13,7 @@ import java.util.List;
  * This class is the class that interacts with all moving pieces, it handles the logic for the board, how to move, where to move etc.
  * @param board data class that holds all data that represents the board
  */
-public record BoardController(Board board, PlayType playType) {
+public record BoardController(Board board) {
 
     public void playMove(Pit pit) {
         processPlayerMove(pit);

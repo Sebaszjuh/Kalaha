@@ -1,6 +1,5 @@
 package com.sgriendt.board;
 
-import com.sgriendt.game.RandomIntType;
 import com.sgriendt.pit.BigPit;
 import com.sgriendt.pit.Pit;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,7 @@ class BoardTest {
 
     @Test
     void testSwitchingCurrentPlayer() {
-        BoardController board = new BoardController(BoardFactory.createBoard(), new RandomIntType());
+        BoardController board = new BoardController(BoardFactory.createBoard());
         assertEquals(board.board().getPlayer1(), board.board().getCurrentPlayer());
         board.updateCurrentPlayer();
         assertEquals(board.board().getPlayer2(), board.board().getCurrentPlayer());
@@ -39,7 +38,7 @@ class BoardTest {
 
     @Test
     void testPlayWhenGameIsFinishedIsDraw() {
-        BoardController board = new BoardController(BoardFactory.createBoard(), new RandomIntType());
+        BoardController board = new BoardController(BoardFactory.createBoard());
         board.board().setGameStatus(BoardStatus.FINISHED);
         board.cleanupBoard();
         board.updateBoardStatusWithWinner();
