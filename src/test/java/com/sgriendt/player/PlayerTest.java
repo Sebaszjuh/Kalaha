@@ -37,4 +37,12 @@ class PlayerTest {
         assertFalse(player.equals(bigPit));
 
     }
+
+    @Test
+    void playerExtraTurnTest(){
+        Player player = new Player("Test player 1");
+        player.setExtraTurn();
+        assertTrue(player.isExtraTurn());
+        assertFalse(player.isExtraTurn());
+    }
 }

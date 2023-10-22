@@ -1,6 +1,7 @@
 package com.sgriendt.pit.state;
 
 
+import com.sgriendt.exception.KalahaPitStateException;
 import com.sgriendt.pit.Pit;
 import com.sgriendt.player.Player;
 
@@ -22,7 +23,10 @@ public class EmptySmallPit implements PitState {
     }
 
     @Override
-    public void nextState(Pit pit){
+    public void nextState(Pit pit) {
+        if (pit.getStonesInPit() == 0) {
+            throw new KalahaPitStateException("Can't update state to filled, Pit has no stones");
+        }
         pit.setPitState(new FilledSmallPit());
     }
 }

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
 
@@ -25,5 +25,14 @@ public class GameTest {
         game.start();
 
         assertNotEquals(BoardStatus.ACTIVE, game.getBoardController().board().getGameStatus());
+    }
+
+    @Test
+    void testGameType(){
+        Game game = new Game();
+        assertTrue(game.getPlayType(1) instanceof MultiplayerType);
+        assertTrue(game.getPlayType(2) instanceof RandomIntType);
+        assertTrue(game.getPlayType(3) instanceof SinglePlayer);
+        assertThrows(IllegalArgumentException.class, ()-> game.getPlayType(4));
     }
 }
