@@ -8,6 +8,9 @@ import com.sgriendt.player.Player;
 import java.util.LinkedList;
 
 public class BoardFactory {
+
+    private BoardFactory() {}
+
     public static final int DEFAULT_NUMBER_OF_PITS = 6;
 
     /**
