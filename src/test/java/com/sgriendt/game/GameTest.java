@@ -4,6 +4,7 @@ import com.sgriendt.board.Board;
 import com.sgriendt.board.BoardStatus;
 import com.sgriendt.pit.BigPit;
 import com.sgriendt.pit.Pit;
+import com.sgriendt.pit.SmallPit;
 import com.sgriendt.pit.state.EmptySmallPit;
 import org.junit.jupiter.api.Test;
 
@@ -23,11 +24,16 @@ public class GameTest {
         assertNotEquals(BoardStatus.ACTIVE, board.getGameStatus());
 
         Pit pit = board.getPlayer1Board().stream().filter(x -> x.getStonesInPit() > 0).findFirst().orElse(null);
+        Pit pitNull = board.getPlayer1Board().stream().filter(x -> x.getStonesInPit() > 0).filter(x-> x instanceof SmallPit).findFirst().orElse(null);
         assertNotNull(pit);
+        assertNull(pitNull);
         assertTrue(pit instanceof BigPit);
 
         Pit pit2 = board.getPlayer2Board().stream().filter(x -> x.getStonesInPit() > 0).findFirst().orElse(null);
+        Pit pit2Null = board.getPlayer2Board().stream().filter(x -> x.getStonesInPit() > 0).filter(x-> x instanceof SmallPit).findFirst().orElse(null);
+
         assertNotNull(pit2);
+        assertNull(pit2Null);
         assertTrue(pit2 instanceof BigPit);
 
         List<Pit> emptySmallPits = board.getPlayer1Board().subList(0, board.getPlayer1Board().size() - 1);
