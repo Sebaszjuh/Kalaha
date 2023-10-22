@@ -24,7 +24,7 @@ public abstract class Pit {
 
     public abstract boolean isSmallPitEmpty();
 
-    public void processMove(Player currentPlayer) {
+    public void updatePitProcess(Player currentPlayer) {
         if (currentPlayer.getStonesInHand() <= 0) {
             throw new IllegalStateException("Cant process move, when hand is empty");
         }

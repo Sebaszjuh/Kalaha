@@ -1,5 +1,6 @@
 package com.sgriendt.board;
 
+import com.sgriendt.game.RandomIntType;
 import com.sgriendt.pit.BigPit;
 import com.sgriendt.pit.Pit;
 import org.junit.jupiter.api.Test;
@@ -15,12 +16,12 @@ class BoardTest {
     @Test
     void testCreatingBoardWith6Small1BigPerPlayer() {
         Board board = BoardFactory.createBoard();
-        assertEquals(board.getCurrentPlayer(), board.getP1());
+        assertEquals(board.getCurrentPlayer(), board.getPlayer1());
         assertEquals(7, board.getActivePlayerBoard().size());
         assertEquals(BoardStatus.ACTIVE, board.getGameStatus());
 
-        LinkedList<Pit> list1 = board.getP1Board();
-        LinkedList<Pit> list2 = board.getP2Board();
+        LinkedList<Pit> list1 = board.getPlayer1Board();
+        LinkedList<Pit> list2 = board.getPlayer2Board();
         Pit p1BigPit = list1.get(list1.size() - 1);
         Pit p2BigPit = list2.get(list2.size() - 1);
 
@@ -30,20 +31,21 @@ class BoardTest {
 
     @Test
     void testSwitchingCurrentPlayer() {
-        BoardController board = new BoardController(BoardFactory.createBoard());
-        assertEquals(board.board().getP1(), board.board().getCurrentPlayer());
+        BoardController board = new BoardController(BoardFactory.createBoard(), new RandomIntType());
+        assertEquals(board.board().getPlayer1(), board.board().getCurrentPlayer());
         board.updateCurrentPlayer();
-        assertEquals(board.board().getP2(), board.board().getCurrentPlayer());
+        assertEquals(board.board().getPlayer2(), board.board().getCurrentPlayer());
     }
 
     @Test
     void testPlayWhenGameIsFinishedIsDraw() {
-        BoardController board = new BoardController(BoardFactory.createBoard());
+        BoardController board = new BoardController(BoardFactory.createBoard(), new RandomIntType());
         board.board().setGameStatus(BoardStatus.FINISHED);
-        board.playGame();
+        board.cleanupBoard();
+        board.updateBoardStatusWithWinner();
         final int totalNumberOfStones = 6 * 6;
         assertEquals(BoardStatus.DRAW, board.board().getGameStatus());
-        assertEquals(totalNumberOfStones, board.board().getP1().getBigPit().getStonesInPit());
-        assertEquals(totalNumberOfStones, board.board().getP2().getBigPit().getStonesInPit());
+        assertEquals(totalNumberOfStones, board.board().getPlayer1().getBigPit().getStonesInPit());
+        assertEquals(totalNumberOfStones, board.board().getPlayer2().getBigPit().getStonesInPit());
     }
 }

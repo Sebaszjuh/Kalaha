@@ -30,19 +30,19 @@ public class Board {
         return currentPlayer.equals(p1) ? p1Board : p2Board;
     }
 
-    public LinkedList<Pit> getP2Board() {
+    public LinkedList<Pit> getPlayer2Board() {
         return p2Board;
     }
 
-    public LinkedList<Pit> getP1Board() {
+    public LinkedList<Pit> getPlayer1Board() {
         return p1Board;
     }
 
-    public Player getP1() {
+    public Player getPlayer1() {
         return p1;
     }
 
-    public Player getP2() {
+    public Player getPlayer2() {
         return p2;
     }
 
