@@ -18,7 +18,8 @@ public class BigPit extends Pit {
 
     @Override
     public void handleLastSow(Player currentPlayer) {
-
+        handleSimpleSow(currentPlayer);
+        currentPlayer.setExtraTurn();
     }
 
 
@@ -29,7 +30,7 @@ public class BigPit extends Pit {
 
     @Override
     public boolean canSow(Player player) {
-        return false;
+        return player.equals(super.getPlayer());
     }
 
     @Override

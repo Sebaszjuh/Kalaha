@@ -32,6 +32,12 @@ public class Player {
         this.stonesInHand--;
     }
 
+    public boolean isExtraTurn() {
+        boolean temp = extraTurn;
+        extraTurn = false;
+        return temp;
+    }
+
     public void setExtraTurn() {
         this.extraTurn = true;
     }
