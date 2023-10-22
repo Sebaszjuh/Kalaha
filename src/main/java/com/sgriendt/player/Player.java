@@ -22,6 +22,12 @@ public class Player {
         this.stonesInHand = stonesInHand;
     }
 
+    public void decrementStonesInHand() {
+        if (stonesInHand <= 0) {
+            throw new IllegalStateException("Cant decrement stones negatively");
+        }
+        this.stonesInHand--;
+    }
 
     public void setExtraTurn() {
         this.extraTurn = true;
