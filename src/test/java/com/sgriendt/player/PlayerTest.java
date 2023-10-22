@@ -20,6 +20,8 @@ class PlayerTest {
             player.decrementStonesInHand();
             assertEquals(5 - i - 1, player.getStonesInHand());
         }
+
+        assertThrows(IllegalStateException.class, player::decrementStonesInHand);
     }
 
     @Test
