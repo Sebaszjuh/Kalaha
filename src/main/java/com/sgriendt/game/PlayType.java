@@ -10,11 +10,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * PlayType is used to define how we play, based of that we call different ways
+ */
 public abstract class PlayType {
 
-    abstract void playGame(BoardController boardController);
+    protected abstract void playGame(BoardController boardController);
 
-    public int pickRandomPitNumber() {
+    protected int pickRandomPitNumber() {
         return ThreadLocalRandom.current().nextInt(0, 6);
     }
 

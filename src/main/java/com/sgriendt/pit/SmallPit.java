@@ -30,13 +30,17 @@ public class SmallPit extends Pit {
 
         final Pit bigPit = currentPlayer.getBigPit();
         bigPit.addStonesToPit(opponentStones + 1);
-
-        opponentPit.getPitState().nextState(opponentPit);
     }
 
     @Override
-    public boolean canTake() {
-        return true;
+    public int takeStones() {
+        int nrOfStones = getStonesInPit();
+        if (nrOfStones == 0) {
+            return nrOfStones;
+        }
+        setStonesInPit(0);
+        getPitState().nextState(this);
+        return nrOfStones;
     }
 
     @Override

@@ -142,8 +142,8 @@ class PitTest {
     void testCanTake() {
         Pit pit1 = new BigPit(p1);
         Pit pit2 = new SmallPit(p1);
-        assertFalse(pit1.canTake());
-        assertTrue(pit2.canTake());
+        assertEquals(0, pit1.takeStones());
+        assertEquals(6, pit2.takeStones());
     }
 
 

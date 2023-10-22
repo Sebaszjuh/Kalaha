@@ -25,8 +25,8 @@ public class BigPit extends Pit {
     }
 
     @Override
-    public boolean canTake() {
-        return false;
+    public int takeStones() {
+        return 0;
     }
 
     @Override

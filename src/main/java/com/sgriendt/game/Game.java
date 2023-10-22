@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * To be able to select different modes the game class gives the option for SinglePlayer, MultiPlayer and RandomInt
+ */
 public class Game {
 
     private BoardController boardController;
@@ -30,7 +33,7 @@ public class Game {
     }
 
     public void afterGameIsFinished() {
-        if(!BoardStatus.isGameEnd(boardController.board().getGameStatus())){
+        if (!BoardStatus.isGameEnd(boardController.board().getGameStatus())) {
             throw new KalahaIllegalGameException("The game is not finished, illegal to cleanup");
         }
         boardController.cleanupBoard();
@@ -60,8 +63,8 @@ public class Game {
 
     }
 
-    public PlayType getPlayType(int type){
-        return switch(type){
+    public PlayType getPlayType(int type) {
+        return switch (type) {
             case 1 -> new MultiplayerType();
             case 2 -> new RandomIntType();
             case 3 -> new SinglePlayer();

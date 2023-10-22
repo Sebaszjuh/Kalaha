@@ -18,7 +18,6 @@ public abstract class Pit {
         this.pitState = pitState;
     }
 
-    public abstract boolean canTake();
     public abstract boolean canSow(Player player);
     public abstract void handleLastSow(Player currentPlayer);
 
@@ -39,15 +38,7 @@ public abstract class Pit {
         currentPlayer.decrementStonesInHand();
     }
 
-    public int takeStones() {
-        int nrOfStones = 0;
-        if (canTake()) {
-            nrOfStones = stonesInPit;
-            stonesInPit = 0;
-            getPitState().nextState(this);
-        }
-        return nrOfStones;
-    }
+    public abstract int takeStones();
 
     public void sow(){
         stonesInPit++;

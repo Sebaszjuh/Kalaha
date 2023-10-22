@@ -12,10 +12,10 @@ public class EmptySmallPit implements PitState {
         final int stones = player.getStonesInHand();
         if (isAbleToCaptureStones(stones, pit, player)) {
             pit.handleLastSow(player);
-            return;
+        } else {
+            pit.handleSimpleSow(player);
+            nextState(pit);
         }
-        pit.handleSimpleSow(player);
-        nextState(pit);
     }
 
     private boolean isAbleToCaptureStones(int stones, Pit pit, Player player){

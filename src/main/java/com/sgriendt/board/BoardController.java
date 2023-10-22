@@ -1,7 +1,6 @@
 package com.sgriendt.board;
 
 
-import com.sgriendt.game.PlayType;
 import com.sgriendt.pit.Pit;
 import com.sgriendt.player.Player;
 
