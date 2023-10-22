@@ -1,6 +1,7 @@
 package com.sgriendt.board;
 
 
+import com.sgriendt.exception.KalahaIllegalGameException;
 import com.sgriendt.pit.Pit;
 import com.sgriendt.player.Player;
 
@@ -75,19 +76,21 @@ public record BoardController(Board board) {
             board.setGameStatus(BoardStatus.DRAW);
             return;
         }
-        if (p1Stones > p2Stones) {
-            board.setGameStatus(BoardStatus.WIN_PLAYER_ONE);
-        } else {
-            board.setGameStatus(BoardStatus.WIN_PLAYER_TWO);
-        }
+
+        final BoardStatus boardStatus = p1Stones > p2Stones ? BoardStatus.WIN_PLAYER_ONE : BoardStatus.WIN_PLAYER_TWO;
+        board.setGameStatus(boardStatus);
     }
 
     public void updateBoardStatusIfFinished() {
-        boolean p1Finished = board.getPlayer1Board().stream().limit(board.getPlayer1Board().size() - 1).allMatch(Pit::isSmallPitEmpty);
-        boolean p2Finished = board.getPlayer2Board().stream().limit(board.getPlayer2Board().size() - 1).allMatch(Pit::isSmallPitEmpty);
+        boolean p1Finished = isPlayerFinished(board.getPlayer1Board());
+        boolean p2Finished = isPlayerFinished(board.getPlayer2Board());
         if (p1Finished || p2Finished) {
             board.setGameStatus(BoardStatus.FINISHED);
         }
+    }
+
+    private boolean isPlayerFinished(List<Pit> list) {
+        return list.stream().limit(list.size() - 1).mapToInt(Pit::getStonesInPit).allMatch(x-> x == 0);
     }
 
     public void updateCurrentPlayer() {

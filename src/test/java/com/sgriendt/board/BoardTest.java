@@ -47,4 +47,18 @@ class BoardTest {
         assertEquals(totalNumberOfStones, board.board().getPlayer1().getBigPit().getStonesInPit());
         assertEquals(totalNumberOfStones, board.board().getPlayer2().getBigPit().getStonesInPit());
     }
+
+    @Test
+    void testIsPlayer1Finished() {
+        BoardController boardController = new BoardController(BoardFactory.createBoard());
+        Board board = boardController.board();
+        assertEquals(BoardStatus.ACTIVE, board.getGameStatus());
+        boardController.updateBoardStatusIfFinished();
+        assertEquals(BoardStatus.ACTIVE, board.getGameStatus());
+
+        board.getPlayer1Board().subList(0, board.getPlayer1Board().size() - 1).forEach(x -> x.setStonesInPit(0));
+        boardController.updateBoardStatusIfFinished();
+        assertEquals(BoardStatus.FINISHED, board.getGameStatus());
+    }
+
 }

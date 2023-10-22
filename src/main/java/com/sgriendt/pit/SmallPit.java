@@ -48,8 +48,4 @@ public class SmallPit extends Pit {
         return true;
     }
 
-    @Override
-    public boolean isSmallPitEmpty() {
-        return super.getStonesInPit() <= 0;
-    }
 }

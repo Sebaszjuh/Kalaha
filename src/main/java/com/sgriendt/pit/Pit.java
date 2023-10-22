@@ -21,8 +21,6 @@ public abstract class Pit {
     public abstract boolean canSow(Player player);
     public abstract void handleLastSow(Player currentPlayer);
 
-    public abstract boolean isSmallPitEmpty();
-
     public void updatePitProcess(Player currentPlayer) {
         if (currentPlayer.getStonesInHand() <= 0) {
             throw new IllegalStateException("Cant process move, when hand is empty");

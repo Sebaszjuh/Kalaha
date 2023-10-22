@@ -33,9 +33,4 @@ public class BigPit extends Pit {
     public boolean canSow(Player player) {
         return player.equals(super.getOwnerOfPit());
     }
-
-    @Override
-    public boolean isSmallPitEmpty() {
-        return false;
-    }
 }
